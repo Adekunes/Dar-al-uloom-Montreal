@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dar Al-'Ulum Montreal Teacher Portal</title>
+    <link rel="stylesheet" href="teacher.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar" id="sidebar">
+            <h1>Teacher Portal</h1>
+            <nav class="sidebar-nav">
+                <a href="#" data-section="dashboard" class="active">Dashboard</a>
+                <a href="#" data-section="students">Students</a>
+                <a href="#" data-section="assignments">Assignments</a>
+                <a href="#" data-section="grades">Grades</a>
+                <a href="#" data-section="attendance">Attendance</a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="header">
+                <button id="sidebarToggle" class="btn">Toggle Sidebar</button>
+                <span id="teacherName">Teacher Name</span>
+                <div id="notificationBell">
+                    Notifications <span id="notificationCount">0</span>
+                </div>
+            </header>
+
+            <section id="dashboardSection" class="section fade-in">
+                <h2>Dashboard</h2>
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <h3>Total Students</h3>
+                        <p id="totalStudents"></p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Upcoming Assignments</h3>
+                        <p id="upcomingAssignments"></p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Average Performance</h3>
+                        <p id="averagePerformance"></p>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="performanceChart"></canvas>
+                </div>
+            </section>
+
+            <section id="studentsSection" class="section hidden fade-in">
+                <h2>Students</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Progress</th>
+                            <th>Attendance</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentsList"></tbody>
+                </table>
+            </section>
+
+            <section id="assignmentsSection" class="section hidden fade-in">
+                <h2>Assignments</h2>
+                <ul id="assignmentsList"></ul>
+                <form id="newAssignmentForm" class="mt-20">
+                    <div class="form-group">
+                        <label for="newAssignmentTitle">Assignment Title</label>
+                        <input type="text" id="newAssignmentTitle" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newAssignmentDueDate">Due Date</label>
+                        <input type="date" id="newAssignmentDueDate" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn">Add Assignment</button>
+                </form>
+            </section>
+
+            <section id="gradesSection" class="section hidden fade-in">
+                <h2>Grades</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Student</th>
+                            <th>Assignment</th>
+                            <th>Grade</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="gradesList"></tbody>
+                </table>
+            </section>
+
+            <section id="attendanceSection" class="section hidden fade-in">
+                <h2>Attendance</h2>
+                <form id="attendanceForm">
+                    <div class="form-group">
+                        <label for="attendanceDate">Date</label>
+                        <input type="date" id="attendanceDate" class="form-control" required>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Student Name</th>
+                                <th>Present</th>
+                                <th>Absent</th>
+                                <th>Late</th>
+                            </tr>
+                        </thead>
+                        <tbody id="attendanceList"></tbody>
+                    </table>
+                    <button type="submit" class="btn mt-20">Save Attendance</button>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <script src="teacher.js"></script>
+</body>
+</html>

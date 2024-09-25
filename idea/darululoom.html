@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dar Al-'Ulum Montreal Parent Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff8e1;
+        }
+        .header {
+            background-color: #fff;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            width: 50px;
+            height: 50px;
+            margin-right: 1rem;
+        }
+        .logo h1 {
+            color: #2e7d32;
+            margin: 0;
+        }
+        .logo span {
+            color: #ffa000;
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+        .user-info img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 1rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .tabs {
+            display: flex;
+            background-color: #fff;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+        .tab {
+            padding: 1rem 2rem;
+            cursor: pointer;
+            background-color: #fff;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+        }
+        .tab.active {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+        .tab-content {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .card {
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .card h3 {
+            color: #2e7d32;
+            margin-top: 0;
+        }
+        .progress-bar {
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            height: 10px;
+            margin-top: 0.5rem;
+        }
+        .progress {
+            background-color: #2e7d32;
+            height: 100%;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="https://via.placeholder.com/50" alt="Dar Al-'Ulum Montreal Logo">
+            <h1>Dar Al-'Ulum <span>Montreal</span></h1>
+        </div>
+        <div class="user-info">
+            <img src="https://via.placeholder.com/40" alt="User Avatar">
+            <div>
+                <p>Parent Name</p>
+                <small>Child: Student Name</small>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="tabs">
+            <button class="tab active" data-tab="overview">Overview</button>
+            <button class="tab" data-tab="progress">Progress</button>
+            <button class="tab" data-tab="attendance">Attendance</button>
+            <button class="tab" data-tab="events">Events</button>
+            <button class="tab" data-tab="communication">Communication</button>
+        </div>
+
+        <div class="tab-content" id="tabContent">
+            <!-- Content will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <script>
+        const tabContent = document.getElementById('tabContent');
+        const tabs = document.querySelectorAll('.tab');
+
+        const content = {
+            overview: `
+                <div class="card">
+                    <h3>Child's Islamic Progress</h3>
+                    <p>Overall progress: 78%</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 78%;"></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Recent Assignments</h3>
+                    <ul>
+                        <li>Memorize Surah Al-Baqarah 1-10 (Due: 2024-09-15)</li>
+                        <li>Arabic Calligraphy Practice (Completed)</li>
+                        <li>Essay on Islamic Golden Age (Overdue)</li>
+                    </ul>
+                </div>
+            `,
+            progress: `
+                <div class="card">
+                    <h3>Subject Progress</h3>
+                    <p>Quran Memorization: 75%</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 75%;"></div>
+                    </div>
+                    <p>Arabic Language: 60%</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 60%;"></div>
+                    </div>
+                    <p>Islamic Studies: 85%</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 85%;"></div>
+                    </div>
+                    <p>Fiqh: 70%</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 70%;"></div>
+                    </div>
+                </div>
+            `,
+            attendance: `
+                <div class="card">
+                    <h3>Attendance Record</h3>
+                    <p>2024-09-01: Present</p>
+                    <p>2024-09-02: Present</p>
+                    <p>2024-09-03: Absent</p>
+                    <p>2024-09-04: Present</p>
+                </div>
+            `,
+            events: `
+                <div class="card">
+                    <h3>Upcoming Events</h3>
+                    <p>Parent-Teacher Meeting: September 15th, 2024 after Maghrib prayer</p>
+                    <p>Islamic Calligraphy Workshop: September 20th, 2024 at the madrasa</p>
+                </div>
+            `,
+            communication: `
+                <div class="card">
+                    <h3>Communication with Ustadh/Ustadha</h3>
+                    <button style="background-color: #2e7d32; color: white; padding: 10px; border: none; border-radius: 5px; margin-bottom: 10px; width: 100%;">Message Ustadh/Ustadha</button>
+                    <button style="background-color: #ffa000; color: white; padding: 10px; border: none; border-radius: 5px; width: 100%;">Schedule Meeting</button>
+                </div>
+            `
+        };
+
+        function showTab(tabName) {
+            tabContent.innerHTML = content[tabName];
+            tabs.forEach(tab => {
+                if (tab.dataset.tab === tabName) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+        }
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                showTab(tab.dataset.tab);
+            });
+        });
+
+        // Initialize with overview tab
+        showTab('overview');
+    </script>
+</body>
+</html>

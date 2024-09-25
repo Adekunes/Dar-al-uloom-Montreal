@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dar Al-'Ulum Montreal Parent Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="bg-green-700 text-white w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
+            <h1 class="text-2xl font-semibold text-center">Dar Al-'Ulum Montreal</h1>
+            <nav>
+                <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-green-600 hover:text-white" data-section="overview">Overview</a>
+                <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-green-600 hover:text-white" data-section="academics">Academics</a>
+                <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-green-600 hover:text-white" data-section="attendance">Attendance</a>
+                <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-green-600 hover:text-white" data-section="behavior">Behavior</a>
+                <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-green-600 hover:text-white" data-section="communication">Communication</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Top Bar -->
+            <header class="bg-white shadow-md p-4 flex justify-between items-center">
+                <button id="sidebarToggle" class="text-gray-500 focus:outline-none md:hidden">
+                    <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 6H20M4 12H20M4 18H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <div class="flex items-center">
+                    <select id="studentSelect" class="border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                        <!-- Options will be populated by JavaScript -->
+                    </select>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200 p-6">
+                <div id="overviewSection" class="dashboard-section">
+                    <h2 class="text-2xl font-semibold mb-4">Overview</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <h3 class="text-lg font-semibold mb-2">Overall Progress</h3>
+                            <p id="overallProgress" class="text-3xl font-bold text-green-600"></p>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <h3 class="text-lg font-semibold mb-2">Attendance</h3>
+                            <p id="attendanceRate" class="text-3xl font-bold text-blue-600"></p>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <h3 class="text-lg font-semibold mb-2">Next Parent-Teacher Meeting</h3>
+                            <p id="nextMeeting" class="text-xl"></p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-lg font-semibold mb-4">Recent Activity</h3>
+                        <ul id="recentActivity" class="space-y-2">
+                            <!-- Recent activity items will be populated by JavaScript -->
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="academicsSection" class="dashboard-section hidden">
+                    <h2 class="text-2xl font-semibold mb-4">Academics</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <h3 class="text-lg font-semibold mb-4">Subject Progress</h3>
+                            <canvas id="subjectProgressChart"></canvas>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <h3 class="text-lg font-semibold mb-4">Assignments</h3>
+                            <ul id="assignmentsList" class="space-y-2 mb-4">
+                                <!-- Assignments will be populated by JavaScript -->
+                            </ul>
+                            <div class="mt-4">
+                                <input type="text" id="newAssignmentTitle" placeholder="Assignment Title" class="border rounded p-2 mr-2">
+                                <input type="date" id="newAssignmentDueDate" class="border rounded p-2 mr-2">
+                                <button id="addAssignmentBtn" class="bg-green-500 text-white px-4 py-2 rounded">Add Assignment</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="attendanceSection" class="dashboard-section hidden">
+                    <h2 class="text-2xl font-semibold mb-4">Attendance</h2>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <canvas id="attendanceChart"></canvas>
+                    </div>
+                </div>
+
+                <div id="behaviorSection" class="dashboard-section hidden">
+                    <h2 class="text-2xl font-semibold mb-4">Behavior</h2>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-lg font-semibold mb-2">Behavior Summary</h3>
+                        <div id="behaviorSummary"></div>
+                    </div>
+                </div>
+
+                <div id="communicationSection" class="dashboard-section hidden">
+                    <h2 class="text-2xl font-semibold mb-4">Communication</h2>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-lg font-semibold mb-4">Messages</h3>
+                        <ul id="messagesList" class="space-y-4 mb-4">
+                            <!-- Messages will be populated by JavaScript -->
+                        </ul>
+                        <div class="mt-4">
+                            <textarea id="newMessageContent" placeholder="Type your message here" class="w-full border rounded p-2 mb-2" rows="3"></textarea>
+                            <button id="sendMessageBtn" class="bg-blue-500 text-white px-4 py-2 rounded">Send Message</button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="shared-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

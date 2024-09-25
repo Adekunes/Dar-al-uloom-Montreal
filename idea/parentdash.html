@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dar Al-'Ulum Montreal Parent Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .slide-in {
+            animation: slideIn 0.5s ease-out;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-amber-50 to-green-50 min-h-screen">
+    <div class="min-h-screen flex flex-col">
+        <header class="bg-white shadow-lg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center">
+                        <span class="text-white text-2xl font-bold">D</span>
+                    </div>
+                    <h1 class="text-3xl font-bold">
+                        <span class="text-green-700">Dar Al-'Ulum</span>
+                        <span class="text-amber-500">Montreal</span>
+                    </h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center">
+                        <span class="text-amber-600 text-xl font-semibold">P</span>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-900">Parent Name</p>
+                        <p class="text-xs text-gray-500">Child: Ahmed</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div class="bg-white rounded-xl shadow-md p-6 transition duration-300 ease-in-out transform hover:scale-105 slide-in">
+                    <h2 class="text-lg font-semibold text-green-700 mb-2">Ahmed's Progress</h2>
+                    <p class="text-4xl font-bold text-amber-500">78%</p>
+                    <div class="mt-4 w-full bg-gray-200 rounded-full h-2.5">
+                        <div class="bg-green-600 h-2.5 rounded-full" style="width: 78%"></div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-md p-6 transition duration-300 ease-in-out transform hover:scale-105 slide-in" style="animation-delay: 0.1s;">
+                    <h2 class="text-lg font-semibold text-green-700 mb-2">Attendance</h2>
+                    <p class="text-4xl font-bold text-amber-500">95%</p>
+                    <p class="mt-2 text-sm text-gray-600">19 out of 20 days</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-md p-6 transition duration-300 ease-in-out transform hover:scale-105 slide-in" style="animation-delay: 0.2s;">
+                    <h2 class="text-lg font-semibold text-green-700 mb-2">Next Parent-Teacher Meeting</h2>
+                    <p class="text-xl font-bold text-amber-500">Sept 15, 2024</p>
+                    <p class="mt-2 text-sm text-gray-600">After Maghrib prayer</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-md p-8">
+                <div class="flex space-x-4 mb-6">
+                    <button class="tab-btn px-6 py-3 rounded-lg font-semibold transition duration-300 ease-in-out" data-tab="subjects">Subjects</button>
+                    <button class="tab-btn px-6 py-3 rounded-lg font-semibold transition duration-300 ease-in-out" data-tab="assignments">Assignments</button>
+                    <button class="tab-btn px-6 py-3 rounded-lg font-semibold transition duration-300 ease-in-out" data-tab="behavior">Behavior</button>
+                    <button class="tab-btn px-6 py-3 rounded-lg font-semibold transition duration-300 ease-in-out" data-tab="communication">Communication</button>
+                </div>
+                <div id="tabContent" class="fade-in"></div>
+            </div>
+        </main>
+
+        <footer class="bg-green-700 text-white py-6">
+            <div class="container mx-auto px-4 text-center">
+                <p>&copy; 2024 Dar Al-'Ulum Montreal. All rights reserved.</p>
+                <p class="mt-2 text-sm">Nurturing Islamic Knowledge and Values</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const tabContent = document.getElementById('tabContent');
+        const tabButtons = document.querySelectorAll('.tab-btn');
+
+        const content = {
+            subjects: `
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-lg font-medium text-gray-700">Quran Memorization</span>
+                            <span class="text-lg font-medium text-green-600">75%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-4">
+                            <div class="bg-green-600 h-4 rounded-full transition-all duration-500 ease-out" style="width: 75%"></div>
+                        </div>
+                        <p class="mt-2 text-sm text-gray-600">Current focus: Surah Al-Baqarah (verses 1-20)</p>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-lg font-medium text-gray-700">Arabic Language</span>
+                            <span class="text-lg font-medium text-green-600">60%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-4">
+                            <div class="bg-green-600 h-4 rounded-full transition-all duration-500 ease-out" style="width: 60%"></div>
+                        </div>
+                        <p class="mt-2 text-sm text-gray-600">Working on basic grammar and vocabulary</p>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-lg font-medium text-gray-700">Islamic Studies</span>
+                            <span class="text-lg font-medium text-green-600">85%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-4">
+                            <div class="bg-green-600 h-4 rounded-full transition-all duration-500 ease-out" style="width: 85%"></div>
+                        </div>
+                        <p class="mt-2 text-sm text-gray-600">Excellent understanding of basic Islamic principles</p>
+                    </div>
+                </div>
+            `,
+            assignments: `
+                <ul class="space-y-4">
+                    <li class="bg-green-50 p-4 rounded-lg flex justify-between items-center">
+                        <div>
+                            <h3 class="font-semibold text-green-700">Memorize Surah Al-Baqarah 1-10</h3>
+                            <p class="text-sm text-green-600">Due: 2024-09-15</p>
+                        </div>
+                        <span class="px-3 py-1 bg-green-200 text-green-800 rounded-full text-sm">Pending</span>
+                    </li>
+                    <li class="bg-amber-50 p-4 rounded-lg flex justify-between items-center">
+                        <div>
+                            <h3 class="font-semibold text-amber-700">Arabic Vocabulary Quiz</h3>
+                            <p class="text-sm text-amber-600">Due: 2024-09-10</p>
+                        </div>
+                        <span class="px-3 py-1 bg-amber-200 text-amber-800 rounded-full text-sm">Completed</span>
+                    </li>
+                    <li class="bg-blue-50 p-4 rounded-lg flex justify-between items-center">
+                        <div>
+                            <h3 class="font-semibold text-blue-700">Essay on Prophet Muhammad's (PBUH) Life</h3>
+                            <p class="text-sm text-blue-600">Due: 2024-09-20</p>
+                        </div>
+                        <span class="px-3 py-1 bg-blue-200 text-blue-800 rounded-full text-sm">Assigned</span>
+                    </li>
+                </ul>
+            `,
+            behavior: `
+                <div class="space-y-6">
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <h3 class="text-lg font-semibold text-green-700 mb-2">Overall Behavior</h3>
+                        <p class="text-green-600">Ahmed has been exhibiting excellent behavior in class. He is respectful to teachers and peers.</p>
+                    </div>
+                    <div class="bg-amber-50 p-4 rounded-lg">
+                        <h3 class="text-lg font-semibold text-amber-700 mb-2">Participation</h3>
+                        <p class="text-amber-600">Ahmed actively participates in class discussions and group activities. Encourage him to continue this engagement.</p>
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h3 class="text-lg font-semibold text-blue-700 mb-2">Areas for Improvement</h3>
+                        <p class="text-blue-600">Ahmed could improve his focus during Quran recitation sessions. Consider practicing with him at home.</p>
+                    </div>
+                </div>
+            `,
+            communication: `
+                <div class="space-y-6">
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <h3 class="text-lg font-semibold text-green-700 mb-2">Message Teacher</h3>
+                        <p class="text-green-600 mb-4">Send a message to Ahmed's teacher for any inquiries or concerns.</p>
+                        <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition duration-300">Compose Message</button>
+                    </div>
+                    <div class="bg-amber-50 p-4 rounded-lg">
+                        <h3 class="text-lg font-semibold text-amber-700 mb-2">Upcoming Parent-Teacher Meeting</h3>
+                        <p class="text-amber-600 mb-2">Date: September 15, 2024</p>
+                        <p class="text-amber-600 mb-4">Time: After Maghrib prayer</p>
+                        <button class="bg-amber-500 text-white px-4 py-2 rounded hover:bg-amber-600 transition duration-300">Confirm Attendance</button>
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h3 class="text-lg font-semibold text-blue-700 mb-2">Latest Announcements</h3>
+                        <ul class="list-disc list-inside text-blue-600">
+                            <li>Eid celebration at the madrasa on September 20th</li>
+                            <li>New Islamic history course starting next month</li>
+                        </ul>
+                    </div>
+                </div>
+            `
+        };
+
+        function showTab(tabName) {
+            tabContent.innerHTML = content[tabName];
+            tabButtons.forEach(btn => {
+                if (btn.dataset.tab === tabName) {
+                    btn.classList.add('bg-green-500', 'text-white');
+                    btn.classList.remove('bg-gray-200', 'text-gray-700');
+                } else {
+                    btn.classList.remove('bg-green-500', 'text-white');
+                    btn.classList.add('bg-gray-200', 'text-gray-700');
+                }
+            });
+        }
+
+        tabButtons.forEach(btn => {
+            btn.addEventListener('click', () => showTab(btn.dataset.tab));
+        });
+
+        // Initialize with subjects tab
+        showTab('subjects');
+    </script>
+</body>
+</html>
